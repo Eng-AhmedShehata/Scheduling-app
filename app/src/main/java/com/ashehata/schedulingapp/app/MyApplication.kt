@@ -31,7 +31,7 @@ class MyApplication : Application() {
 
         // Set Worker request type
         val periodicRequest = PeriodicWorkRequest.Builder(TaskWorker::class.java,
-            getInteger(R.integer.interval_time_in_hours).toLong(), TimeUnit.HOURS)
+            getInteger(R.integer.interval_time_in_hours)!!.toLong(), TimeUnit.HOURS)
                 .setConstraints(mConstraints)
                 .build()
 
