@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.work.*
 import com.ashehata.schedulingapp.workManager.TaskWorker
 import java.lang.Exception
+import java.lang.Integer.getInteger
 import java.util.concurrent.TimeUnit
 
 class MyApplication : Application() {
@@ -30,7 +31,7 @@ class MyApplication : Application() {
 
         // Set Worker request type
         val periodicRequest = PeriodicWorkRequest.Builder(TaskWorker::class.java,
-            PeriodicWorkRequest.MIN_PERIODIC_INTERVAL_MILLIS, TimeUnit.MILLISECONDS)
+            getInteger(R.integer.interval_time_in_hours).toLong(), TimeUnit.HOURS)
                 .setConstraints(mConstraints)
                 .build()
 
