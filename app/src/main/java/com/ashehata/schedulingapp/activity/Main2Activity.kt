@@ -1,7 +1,8 @@
-package com.ashehata.schedulingapp
+package com.ashehata.schedulingapp.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ashehata.schedulingapp.R
 
 class Main2Activity : AppCompatActivity() {
 
