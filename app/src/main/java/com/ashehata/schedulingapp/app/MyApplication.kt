@@ -2,10 +2,11 @@ package com.ashehata.schedulingapp.app
 
 import android.app.Application
 import android.util.Log
-import androidx.work.*
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.ashehata.schedulingapp.workManager.TaskWorker
-import java.lang.Exception
-import java.lang.Integer.getInteger
 import java.util.concurrent.TimeUnit
 
 class MyApplication : Application() {
@@ -31,10 +32,12 @@ class MyApplication : Application() {
 
         // Set Worker request type
         val periodicRequest = PeriodicWorkRequest.Builder(TaskWorker::class.java,
-            3, TimeUnit.HOURS)
+            15, TimeUnit.MINUTES)
                 .setConstraints(mConstraints)
                 .build()
 
-        WorkManager.getInstance(applicationContext).enqueue(periodicRequest)
+        WorkManager.getInstance(this)
+            .enqueueUniquePeriodicWork("work", ExistingPeriodicWorkPolicy.KEEP, periodicRequest)
+
     }
 }
